@@ -26,9 +26,9 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 Load balancing ensures that the application will be highly available (redudancy scheme), in addition to restricting traffic to the network:
 
 - Load Balancers play an important role on securing cloud computing, given the off-load function that defends organization against distributed attacks (DDoS)
-- At the L4 load balancer directs traffic based on data from network inbounds and transport layer protocols such as IP and TCP in addition to this at the L7 adds content switching to load balancing which allows routin decisions based on attributes like HTTP header and HTML form data.
+- At the L4 load balancer directs traffic based on data from network inbounds and transport layer protocols such as IP and TCP in addition to this at the L7 adds content switching to load balancing which allows routing decisions based on attributes like HTTP header and HTML form data.
 
--  The advantage of a jump box relays on the fact that is used as a system tool that prevents direct connection from the public network to the security zone in addition to this on the management side a jump box becomes a tool that could streamline management updates to the security zone trough the use of ansible and docker containers that keep the security zone up to date at minimum effort with scalability proportions.
+The advantage of a jump box relays on the fact that is used as a system tool that prevents direct connection from the public network to the security zone in addition to this on the management side a jump box becomes a tool that could streamline management updates to the security zone trough the use of ansible and docker containers that keep the security zone up to date at minimum effort with scalability proportions.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the work-load and system logs.
 - Filebeat is a lightweight tool that forwards and centralize log data. Installed as a component on targets, Filebeat monitors the log files or locations specify on the config files and then collects log events, and forwards them to Elasticsearch for visulaization.
@@ -73,13 +73,19 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
   3. Documentation, is a form of documentation as sourcesafe.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Install the following resources in order to perform ELK stack installation: docker.io, python3, docker python Module.
+- Adjust memory setting given ELK is system memory demanding.
+- download and launch docker elk container and publish access in the following ports:
+  
+  -  5601:5601
+  -  9200:9200
+  -  5044:5044
+  
+ - Enable docker service after reboot, (very important).
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![ELK_docker_ps_v1](https://user-images.githubusercontent.com/70111682/169726676-f646364a-1119-4381-84e7-d603590d30d5.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
