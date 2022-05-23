@@ -113,8 +113,8 @@ SSH into the control node and follow the steps below:
   a. for elk stack you need to go to elk server and check docker ps or access the app/kibana locally (check Linux files for more details).
 
 _TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? playbook are located here: Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
+- _Which file is the playbook? they are the .yml files Where do you copy it?_Cloud-Security-Azure-Deployment/Ansible/
+- _Which file do you update to make Ansible run the playbook on a specific machine? on /etc/ansible/ansible.cfg How do I specify which machine to install the ELK server on versus which to install Filebeat on?_creating groups on the file /etc/ansible/hosts and making sure the playbooks properly refer to them.
+- _Which URL do you navigate to in order to check that the ELK server is running?   http://13.70.187.237:5601/app/kibana#/home
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
