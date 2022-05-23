@@ -31,7 +31,7 @@ Load balancing ensures that the application will be highly available (redudancy 
 The advantage of a jump box relays on the fact that is used as a system tool that prevents direct connection from the public network to the security zone in addition to this on the management side a jump box becomes a tool that could streamline management updates to the security zone trough the use of ansible and docker containers that keep the security zone up to date at minimum effort with scalability proportions.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the work-load and system logs.
-- Filebeat is a lightweight tool that forwards and centralize log data. Installed as a component on targets, Filebeat monitors the log files or locations specify on the config files and then collects log events, and forwards them to Elasticsearch for visulaization.
+- Filebeat is a lightweight tool that forwards and centralize log data. Installed as a component on targets, Filebeat monitors the log files or locations specify on the config files and then collects log events, and forwards them to Elasticsearch for visualization.
 
 - Metricbeat takes the metrics and statistics that are collected and ships them to the output that is specified on the config files, such as Elasticsearch can provide updated data visualization. Metricbeat helps monitor the VMs on the secure zone by collecting metrics from the system and services running on the machines such as DVWA.
 
@@ -52,7 +52,7 @@ Only the jump-Box-Provisioner machine can accept connections from the Internet. 
 
 Machines within the network can only be accessed by SSH p22 connections from Jump-Box-Provisioner.
   
-- ELK server can be acceessed via SSHp22 from Jump-Box-Provisioner and also ELK can be accessed from <local-management> IP address trough p5601. 
+- ELK server can be acceessed via SSHp22 from Jump-Box-Provisioner and also ELK can be accessed from <local-management> IP address to ELK-Public-ipaddress:p5601. 
 
 A summary of the access policies in place can be found in the table below.
 
@@ -69,7 +69,7 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - There are several advantages of performing configuration using ansible such as:
   
   1. Repeatbility and Reproducibility of the set up, using a script is less prone to errors and in case of errors is easy to find since is a single source.
-  2. Scalability, in both size and feature set can easely scale from a few to thousands machines in case the deployment grows exponentially and future evolution.
+  2. Scalability, in both size and feature set can easely scale from a few to thousands machines in case the deployment grows exponentially and feature set evolution.
   3. Documentation, is a form of documentation as sourcesafe.
 
 The playbook implements the following tasks:
@@ -89,14 +89,20 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+
+| Secure Zone Member name | ip address | Description |
+|-------------------------|------------|-------------|
+| Web-1                   | 10.0.0.5   | Host DVWA   |
+| Web-2                   | 10.0.0.6   | Host DVWA   |
+| Web-3                   | 10.0.0.X   | Host DVWA   |
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- filebeat-7.4.0-amd64.deb & metricbeat-7.4.0-amd64.deb
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
-
+- Filebeat: monitor and collects log files and log events,i.e: audit logs, deprecation logs, gc logs, server logs, and slow logs.
+- metricbeat: collects metric data from targets, this could be operating system metrics such as CPU or memory or data related to services running on the target.
+  
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
