@@ -118,3 +118,9 @@ _TODO: Answer the following questions to fill in the blanks:_
 - _Which URL do you navigate to in order to check that the ELK server is running?   http://13.70.187.237:5601/app/kibana#/home
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+  1. curl https://github.com/jluisro07/Cloud-Security-Azure-Deployment/tree/main/Ansible/<playbook_file> >> /etc/ansible/<playbook_file>.yml
+  2. nano /etc/ansible/<<playbbok_file.yml>
+  3. ctrl + X, Y  enter
+  4. cd /etc/ansible
+  5. ansible-playbook <playbook_file.yml>
+  
