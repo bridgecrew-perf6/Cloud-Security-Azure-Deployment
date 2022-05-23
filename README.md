@@ -5,12 +5,13 @@ This is a basic cloud deployment showcasing security topologies use of jump-Box 
 The files in this repository were used to configure the network depicted below.
 Diagrams/Cloud_Azure_Deployment_v2.pdf
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above.
+The files need to be organized as shown below on the ansible directory in order to work as required to recreate the enviroment.
 
-  - _TODO: Enter the playbook file._
+![ansible_file_hierarchy](https://user-images.githubusercontent.com/70111682/169720577-576e71e0-7ee2-4565-b96e-8c4b48200f74.png)
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -22,22 +23,27 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly _____, in addition to restricting _____ to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+Load balancing ensures that the application will be highly available (redudancy scheme), in addition to restricting traffic to the network:
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+- Load Balancers play an important role on securing cloud computing, given the off-load function that defends organization against distributed attacks (DDoS)
+- At the L4 load balancer directs traffic based on data from network inbounds and transport layer protocols such as IP and TCP in addition to this at the L7 adds content switching to load balancing which allows routin decisions based on attributes like HTTP header and HTML form data.
+
+-  The advantage of a jump box relays on the fact that is used as a system tool that prevents direct connection from the public network to the security zone in addition to this on the management side a jump box becomes a tool that could streamline management updates to the security zone trough the use of ansible and docker containers that keep the security zone up to date at minimum effort with scalability proportions.
+
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the work-load and system logs.
+- Filebeat is a lightweight tool that forwards and centralize log data. Installed as a component on targets, Filebeat monitors the log files or locations specify on the config files and then collects log events, and forwards them to Elasticsearch for visulaization.
+
+- Metricbeat takes the metrics and statistics that are collected and ships them to the output that is specified on the config files, such as Elasticsearch can provide updated data visualization. Metricbeat helps monitor the VMs on the secure zone by collecting metrics from the system and services running on the machines such as DVWA.
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name                 | Function           | IP address     | Operating System     | Size                                 |
+|----------------------|--------------------|----------------|----------------------|--------------------------------------|
+| jump-Box-Provisioner | Gateway server     | local:10.0.0.4 | Linux (ubuntu 20.04) | Standard B1s (1 vcpu, 1 GiB memory)  |
+| ELK Server           | ELK Monitor        | local:10.1.0.4 | Linux (ubuntu 20.04) | Standard B2s (2 vcpus, 4 GiB memory) |
+| VM                   | Secure Zone member | local:10.0.0.X | Linux (ubuntu 20.04) | Standard B1ms (1 vcpu, 2 GiB memory) |
+
 
 ### Access Policies
 
